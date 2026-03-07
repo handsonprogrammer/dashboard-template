@@ -75,7 +75,7 @@ export function Sidebar() {
       </aside>
 
       {/* ── Mobile drawer ── */}
-      <Dialog open={isOpen} onClose={close} className="relative z-50 md:hidden">
+      <Dialog open={isOpen} onClose={close} className="relative z-50 md:hidden" aria-label="Navigation menu">
         {/* Backdrop */}
         <DialogBackdrop className="fixed inset-0 bg-black/40" />
 
