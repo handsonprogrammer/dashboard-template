@@ -296,13 +296,13 @@ Track progress here. Mark items `[x]` when complete.
 - [x] `package.json` scripts (storybook, test:unit, test:e2e, etc.)
 
 ### Phase 2 — Layout Shell
-- [ ] `src/contexts/SidebarContext.tsx`
-- [ ] `src/contexts/NotificationContext.tsx`
-- [ ] `src/components/layout/Sidebar/` (desktop collapse + mobile drawer)
-- [ ] `src/components/layout/Header/` (hamburger, breadcrumbs, ⌘K, bell, avatar)
-- [ ] `src/app/(dashboard)/layout.tsx`
-- [ ] `src/app/(auth)/layout.tsx`
-- [ ] `src/app/layout.tsx` (ThemeProvider, Toaster)
+- [x] `src/contexts/SidebarContext.tsx`
+- [x] `src/contexts/NotificationContext.tsx`
+- [x] `src/components/layout/Sidebar/` (desktop collapse + mobile drawer)
+- [x] `src/components/layout/Header/` (hamburger, breadcrumbs, ⌘K, bell, avatar)
+- [x] `src/app/(dashboard)/layout.tsx`
+- [x] `src/app/(auth)/layout.tsx`
+- [x] `src/app/layout.tsx` (ThemeProvider, Toaster)
 
 ### Phase 3 — UI Component Library
 - [ ] Button
