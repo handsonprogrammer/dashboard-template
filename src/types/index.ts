@@ -9,31 +9,24 @@ export type Role = "admin" | "editor" | "viewer";
 
 /** Date range (used by DateRangePicker). */
 export interface DateRange {
-  from: Date;
-  to?: Date;
+    from: Date;
+    to?: Date;
 }
 
 /** Paginated response wrapper. */
 export interface PaginatedResult<T> {
-  data: T[];
-  total: number;
-  page: number;
-  limit: number;
+    data: T[];
+    total: number;
+    page: number;
+    limit: number;
 }
 
-/** Navigation item for the sidebar. */
-export interface NavItem {
-  label: string;
-  href: string;
-  icon?: string;
-  children?: NavItem[];
-}
 
 /** Notification entity. */
 export interface NotificationItem {
-  id: string;
-  title: string;
-  description?: string;
-  read: boolean;
-  createdAt: Date;
+    id: string;
+    title: string;
+    description?: string;
+    read: boolean;
+    createdAt: Date;
 }

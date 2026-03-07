@@ -1,13 +1,13 @@
 import { BarChart2, LayoutDashboard, Puzzle, ShoppingCart, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-export interface NavItem {
+export interface SidebarNavItem {
   label: string;
   href: string;
   icon: LucideIcon;
 }
 
-export const navItems: NavItem[] = [
+export const navItems: SidebarNavItem[] = [
   { label: "Dashboard",  href: "/admin",      icon: LayoutDashboard },
   { label: "Analytics",  href: "/analytics",  icon: BarChart2 },
   { label: "Users",      href: "/users",      icon: Users },
