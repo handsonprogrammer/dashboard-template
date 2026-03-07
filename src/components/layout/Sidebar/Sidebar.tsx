@@ -1,7 +1,7 @@
 "use client";
 
-import { Dialog, DialogPanel } from "@headlessui/react";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
+import { ChevronLeft, ChevronRight, LayoutDashboard, X } from "lucide-react";
 import { useSidebar } from "@/contexts/SidebarContext";
 import { cn } from "@/lib/utils";
 import { navItems } from "./navConfig";
@@ -35,6 +35,7 @@ export function Sidebar() {
     <>
       {/* ── Desktop sidebar ── */}
       <aside
+        aria-label="Main navigation"
         className={cn(
           "hidden md:flex flex-col h-screen sticky top-0 bg-(--color-sidebar-bg) border-r border-(--color-border) transition-[width] duration-200 overflow-hidden shrink-0",
           isCollapsed ? "w-16" : "w-60"
@@ -47,6 +48,7 @@ export function Sidebar() {
             isCollapsed ? "justify-center" : "gap-2"
           )}
         >
+          <LayoutDashboard className="h-5 w-5 shrink-0 text-(--color-primary)" />
           {!isCollapsed && (
             <span className="font-semibold text-sm truncate">
               Dashboard
@@ -75,7 +77,7 @@ export function Sidebar() {
       {/* ── Mobile drawer ── */}
       <Dialog open={isOpen} onClose={close} className="relative z-50 md:hidden">
         {/* Backdrop */}
-        <div className="fixed inset-0 bg-black/40" aria-hidden="true" />
+        <DialogBackdrop className="fixed inset-0 bg-black/40" />
 
         <div className="fixed inset-0 flex">
           <DialogPanel className="flex flex-col w-60 h-full bg-(--color-sidebar-bg) border-r border-(--color-border)">
