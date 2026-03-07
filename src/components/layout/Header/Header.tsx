@@ -14,7 +14,7 @@ function Breadcrumb() {
     <nav aria-label="Breadcrumb" className="hidden sm:flex items-center gap-1.5 text-sm">
       <span className="text-(--color-muted-foreground)">Dashboard</span>
       {segments.map((segment, i) => (
-        <span key={i} className="flex items-center gap-1.5">
+        <span key={`${i}-${segment}`} className="flex items-center gap-1.5">
           <span className="text-(--color-muted-foreground)">/</span>
           <span
             className={cn(
@@ -39,6 +39,7 @@ export function Header() {
     <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-(--color-border) bg-(--color-surface)/80 backdrop-blur-sm px-4 shrink-0">
       {/* Left: menu toggle */}
       <button
+        type="button"
         onClick={toggle}
         className="rounded-md p-2 text-(--color-muted-foreground) hover:bg-(--color-muted) hover:text-(--color-foreground) transition-colors"
         aria-label="Toggle menu"
@@ -53,8 +54,9 @@ export function Header() {
 
       {/* Right: placeholder actions + avatar */}
       <div className="flex items-center gap-1">
-        {/* Phase 3: CommandPalette trigger */}
+        {/* Phase 3: CommandPalette — replace aria-disabled with actual handler */}
         <button
+          type="button"
           className="rounded-md p-2 text-(--color-muted-foreground) hover:bg-(--color-muted) hover:text-(--color-foreground) transition-colors"
           aria-label="Open command palette"
           aria-disabled="true"
@@ -63,8 +65,9 @@ export function Header() {
           <Search className="h-5 w-5" />
         </button>
 
-        {/* Phase 3: NotificationBell */}
+        {/* Phase 3: NotificationBell — replace aria-disabled with actual handler */}
         <button
+          type="button"
           className="rounded-md p-2 text-(--color-muted-foreground) hover:bg-(--color-muted) hover:text-(--color-foreground) transition-colors"
           aria-label="Notifications"
           aria-disabled="true"
