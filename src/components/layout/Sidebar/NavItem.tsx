@@ -21,6 +21,7 @@ export function NavItem({ item, collapsed, onClick }: NavItemProps) {
     <Link
       href={item.href}
       onClick={onClick}
+      aria-current={isActive ? "page" : undefined}
       className={cn(
         "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
         isActive
@@ -33,7 +34,7 @@ export function NavItem({ item, collapsed, onClick }: NavItemProps) {
       <span
         className={cn(
           "overflow-hidden whitespace-nowrap transition-all duration-200",
-          collapsed ? "w-0 opacity-0" : "w-auto opacity-100"
+          collapsed ? "max-w-0 opacity-0" : "max-w-[12rem] opacity-100"
         )}
       >
         {item.label}
