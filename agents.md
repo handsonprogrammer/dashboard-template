@@ -305,38 +305,38 @@ Track progress here. Mark items `[x]` when complete.
 - [x] `src/app/layout.tsx` (ThemeProvider, Toaster)
 
 ### Phase 3 — UI Component Library
-- [ ] Button
-- [ ] Badge
-- [ ] Avatar + AvatarGroup
-- [ ] Spinner
-- [ ] Progress (linear + ring)
-- [ ] Alert
-- [ ] Skeleton (card, table-row, chart, avatar variants)
-- [ ] EmptyState
-- [ ] Modal + ConfirmDialog
-- [ ] Drawer
-- [ ] Tooltip
-- [ ] Tabs
-- [ ] Accordion
-- [ ] Dropdown
-- [ ] Breadcrumbs
-- [ ] CommandPalette
-- [ ] NotificationBell
-- [ ] ThemeToggle
-- [ ] Input
-- [ ] Textarea
-- [ ] Select (native + Listbox)
-- [ ] Checkbox
-- [ ] RadioGroup
-- [ ] Toggle (switch)
-- [ ] DateRangePicker
-- [ ] Card + CardHeader + CardBody + CardFooter
-- [ ] StatCard
-- [ ] TextCard
-- [ ] ImageCard
-- [ ] Stepper (horizontal + vertical)
-- [ ] Timeline
-- [ ] `src/components/ui/index.ts` barrel
+- [x] Button
+- [x] Badge
+- [x] Avatar + AvatarGroup
+- [x] Spinner
+- [x] Progress (linear + ring)
+- [x] Alert
+- [x] Skeleton (card, table-row, chart, avatar variants)
+- [x] EmptyState
+- [x] Modal + ConfirmDialog
+- [x] Drawer
+- [x] Tooltip
+- [x] Tabs
+- [x] Accordion
+- [x] Dropdown
+- [x] Breadcrumbs
+- [x] CommandPalette
+- [x] NotificationBell
+- [x] ThemeToggle
+- [x] Input
+- [x] Textarea
+- [x] Select (native + Listbox)
+- [x] Checkbox
+- [x] RadioGroup
+- [x] Toggle (switch)
+- [x] DateRangePicker
+- [x] Card + CardHeader + CardBody + CardFooter
+- [x] StatCard
+- [x] TextCard
+- [x] ImageCard
+- [x] Stepper (horizontal + vertical)
+- [x] Timeline
+- [x] `src/components/ui/index.ts` barrel
 
 ### Phase 4 — Charts
 - [ ] LineChart (multi-series, monotone, custom tooltip)
