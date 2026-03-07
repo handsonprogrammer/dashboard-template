@@ -2,6 +2,7 @@
  * Mock analytics data for dashboard pages and chart demos.
  * Replace these with real API calls when integrating a backend.
  */
+import type { CategoryDataPoint } from "@/types";
 
 export interface MonthlyDataPoint {
     month: string;
@@ -13,12 +14,6 @@ export interface SignupDataPoint {
     month: string;
     signups: number;
     churned: number;
-}
-
-export interface CategoryDataPoint {
-    label: string;
-    value: number;
-    color: string;
 }
 
 export const revenueData: MonthlyDataPoint[] = [

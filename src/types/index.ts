@@ -30,3 +30,10 @@ export interface NotificationItem {
     read: boolean;
     createdAt: Date;
 }
+
+/** Data point for pie/donut charts — a labeled segment with a color. */
+export interface CategoryDataPoint {
+    label: string;
+    value: number;
+    color: string; // any CSS color: "var(--color-primary)", "#3b82f6", "oklch(...)"
+}
