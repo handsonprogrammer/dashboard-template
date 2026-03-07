@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import type { SidebarNavItem } from "./navConfig";
 
-interface NavItemProps {
+export interface NavItemProps {
   item: SidebarNavItem;
   collapsed: boolean;
   onClick?: () => void;

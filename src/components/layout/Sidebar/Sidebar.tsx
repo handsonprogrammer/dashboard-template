@@ -61,6 +61,7 @@ export function Sidebar() {
         {/* Collapse toggle */}
         <div className="border-t border-(--color-border) p-2 shrink-0">
           <button
+            type="button"
             onClick={collapse}
             className="flex w-full items-center justify-center rounded-md p-2 text-(--color-muted-foreground) hover:bg-(--color-muted) hover:text-(--color-foreground) transition-colors"
             aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
@@ -85,6 +86,7 @@ export function Sidebar() {
             <div className="flex h-16 items-center justify-between border-b border-(--color-border) px-4 shrink-0">
               <span className="font-semibold text-sm">Dashboard</span>
               <button
+                type="button"
                 onClick={close}
                 className="rounded-md p-1 text-(--color-muted-foreground) hover:bg-(--color-muted) hover:text-(--color-foreground) transition-colors"
                 aria-label="Close menu"
