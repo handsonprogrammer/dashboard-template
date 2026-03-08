@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useReducer } from "react";
+import { useState, useReducer, useMemo } from "react";
 import { Trash2, Edit, Copy } from "lucide-react";
 import {
     // Navigation
@@ -129,12 +129,18 @@ function ComponentBlock({
 }) {
     const [tab, setTab] = useState<"preview" | "code">("preview");
 
-    const initialState = (controls ?? []).reduce<ControlState>((acc, c) => {
-        acc[c.prop] = c.type === "select" ? c.options[0] : false;
-        return acc;
-    }, {});
+    const initialState = useMemo(
+        () =>
+            (controls ?? []).reduce<ControlState>((acc, c) => {
+                acc[c.prop] = c.type === "select" ? c.options[0] : false;
+                return acc;
+            }, {}),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
     const [state, dispatch] = useReducer(
-        (prev: ControlState, patch: Partial<ControlState>): ControlState => ({ ...prev, ...patch } as ControlState),
+        (prev: ControlState, patch: Record<string, string | boolean>): ControlState =>
+            ({ ...prev, ...patch }),
         initialState
     );
 
@@ -159,6 +165,7 @@ function ComponentBlock({
                                 key={t}
                                 type="button"
                                 onClick={() => setTab(t)}
+                                aria-pressed={tab === t}
                                 className={[
                                     "rounded-md px-3 py-1 text-xs font-medium capitalize transition-colors",
                                     tab === t
