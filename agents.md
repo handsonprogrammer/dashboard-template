@@ -339,11 +339,11 @@ Track progress here. Mark items `[x]` when complete.
 - [x] `src/components/ui/index.ts` barrel
 
 ### Phase 4 — Charts
-- [ ] LineChart (multi-series, monotone, custom tooltip)
-- [ ] BarChart (grouped + stacked)
-- [ ] AreaChart (gradient fill)
-- [ ] PieChart
-- [ ] DonutChart
+- [x] LineChart (multi-series, monotone, custom tooltip)
+- [x] BarChart (grouped + stacked)
+- [x] AreaChart (gradient fill)
+- [x] PieChart
+- [x] DonutChart
 
 ### Phase 5 — Data Table + Pagination + Export
 - [ ] `src/components/tables/DataTable/` (sort, filter, select, skeleton, empty)
