@@ -356,6 +356,19 @@ function PrimitivesSection() {
     );
 }
 
+const ALERT_TITLE: Record<string, string> = {
+    info: "Info",
+    success: "Success",
+    warning: "Warning",
+    destructive: "Error",
+};
+const ALERT_MESSAGE: Record<string, string> = {
+    info: "Your changes have been saved successfully.",
+    success: "The import completed without errors.",
+    warning: "Your subscription expires in 7 days.",
+    destructive: "Failed to delete the selected records.",
+};
+
 function FeedbackSection() {
     return (
         <div className="space-y-10">
@@ -373,21 +386,9 @@ function FeedbackSection() {
             >
                 {(s) => {
                     const variant = s.variant as "info" | "success" | "warning" | "destructive";
-                    const titleMap: Record<string, string> = {
-                        info: "Info",
-                        success: "Success",
-                        warning: "Warning",
-                        destructive: "Error",
-                    };
-                    const messageMap: Record<string, string> = {
-                        info: "Your changes have been saved successfully.",
-                        success: "The import completed without errors.",
-                        warning: "Your subscription expires in 7 days.",
-                        destructive: "Failed to delete the selected records.",
-                    };
                     return (
-                        <Alert variant={variant} title={titleMap[variant]} className="max-w-xl">
-                            {messageMap[variant]}
+                        <Alert variant={variant} title={ALERT_TITLE[variant]} className="max-w-xl">
+                            {ALERT_MESSAGE[variant]}
                         </Alert>
                     );
                 }}
