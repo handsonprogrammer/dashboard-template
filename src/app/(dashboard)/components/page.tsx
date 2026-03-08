@@ -329,28 +329,33 @@ function PrimitivesSection() {
             <ComponentBlock
                 title="Progress"
                 description="Linear bars and ring progress."
+                controls={[
+                    { type: "select", prop: "variant", label: "Variant", options: ["default", "success", "warning", "destructive"] },
+                    { type: "select", prop: "value",   label: "Value",   options: ["25", "50", "75", "100"] },
+                ]}
                 code={`{/* Linear */}
 <Progress value={30} showLabel label="Storage" />
-<Progress value={65} variant="success"    showLabel label="Completion" />
-<Progress value={82} variant="warning"    showLabel label="CPU Usage" />
+<Progress value={65} variant="success"     showLabel label="Completion" />
+<Progress value={82} variant="warning"     showLabel label="CPU Usage" />
 <Progress value={95} variant="destructive" showLabel label="Memory" />
 
 {/* Ring */}
 <RingProgress value={35} showLabel size={80} />
-<RingProgress value={72} variant="success"    showLabel size={80} />
+<RingProgress value={72} variant="success"     showLabel size={80} />
 <RingProgress value={91} variant="destructive" showLabel size={80} />`}
             >
-                <div className="space-y-3 max-w-md">
-                    <Progress value={30} showLabel label="Storage" />
-                    <Progress value={65} variant="success" showLabel label="Completion" />
-                    <Progress value={82} variant="warning" showLabel label="CPU Usage" />
-                    <Progress value={95} variant="destructive" showLabel label="Memory" />
-                </div>
-                <div className="flex gap-6 mt-4">
-                    <RingProgress value={35} showLabel size={80} />
-                    <RingProgress value={72} variant="success" showLabel size={80} />
-                    <RingProgress value={91} variant="destructive" showLabel size={80} />
-                </div>
+                {(s) => {
+                    const val = Number(s.value);
+                    const variant = s.variant as "default" | "success" | "warning" | "destructive";
+                    return (
+                        <div className="space-y-4 w-full max-w-md">
+                            <Progress value={val} variant={variant} showLabel label="Progress" />
+                            <div className="flex gap-6">
+                                <RingProgress value={val} variant={variant} showLabel size={80} />
+                            </div>
+                        </div>
+                    );
+                }}
             </ComponentBlock>
         </div>
     );
@@ -754,8 +759,6 @@ function NavigationSection() {
 }
 
 function FormsSection() {
-    const [text, setText] = useState("Alice Johnson");
-    const [email, setEmail] = useState("");
     const [area, setArea] = useState("");
     const [selectVal, setSelectVal] = useState("editor");
     const [checked, setChecked] = useState(false);
@@ -768,46 +771,21 @@ function FormsSection() {
         <div className="space-y-10 max-w-lg">
             <ComponentBlock
                 title="Input"
-                description="Label, placeholder, error, disabled states."
-                code={`<Input
-  label="Full Name"
-  value={name}
-  onChange={(e) => setName(e.target.value)}
-  placeholder="Your name"
-/>
-
-<Input
-  label="Email"
-  type="email"
-  placeholder="you@example.com"
-  helperText="We'll never share your email."
-/>
-
-<Input label="Invalid Field" error="This field is required." />
-<Input label="Disabled"      disabled />`}
+                description="Text field with label, helper, and error state."
+                controls={[
+                    { type: "select", prop: "state", label: "State", options: ["default", "error", "disabled"] },
+                ]}
+                code={`<Input label="Username" placeholder="Enter username" />
+<Input label="Email" type="email" error="Invalid email address" placeholder="you@example.com" />
+<Input label="Disabled" placeholder="Cannot edit" disabled />`}
             >
-                <div className="space-y-3">
-                    <Input
-                        label="Full Name"
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                        placeholder="Your name"
-                    />
-                    <Input
-                        label="Email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="you@example.com"
-                        helperText="We'll never share your email."
-                    />
-                    <Input
-                        label="Invalid Field"
-                        placeholder="Something wrong"
-                        error="This field is required."
-                    />
-                    <Input label="Disabled" placeholder="Cannot edit" disabled />
-                </div>
+                {(s) => (
+                    <div className="max-w-sm w-full">
+                        {s.state === "default"  && <Input label="Username" placeholder="Enter username" />}
+                        {s.state === "error"    && <Input label="Email" type="email" error="Invalid email address" placeholder="you@example.com" />}
+                        {s.state === "disabled" && <Input label="Disabled" placeholder="Cannot edit" disabled />}
+                    </div>
+                )}
             </ComponentBlock>
 
             <ComponentBlock
