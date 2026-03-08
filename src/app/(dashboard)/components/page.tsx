@@ -206,6 +206,12 @@ function PrimitivesSection() {
             <ComponentBlock
                 title="Button"
                 description="All variants, sizes, and states."
+                controls={[
+                    { type: "select",  prop: "variant",  label: "Variant",  options: ["primary", "secondary", "ghost", "outline", "destructive"] },
+                    { type: "select",  prop: "size",     label: "Size",     options: ["sm", "md", "lg"] },
+                    { type: "boolean", prop: "loading",  label: "Loading" },
+                    { type: "boolean", prop: "disabled", label: "Disabled" },
+                ]}
                 code={`<Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
 <Button variant="ghost">Ghost</Button>
@@ -221,30 +227,26 @@ function PrimitivesSection() {
 <Button variant="primary" loading>Loading</Button>
 <Button variant="primary" disabled>Disabled</Button>`}
             >
-                <div className="space-y-3">
-                    <div className="flex flex-wrap gap-2">
-                        <Button variant="primary">Primary</Button>
-                        <Button variant="secondary">Secondary</Button>
-                        <Button variant="ghost">Ghost</Button>
-                        <Button variant="outline">Outline</Button>
-                        <Button variant="destructive">Destructive</Button>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        <Button variant="primary" size="sm">Small</Button>
-                        <Button variant="primary" size="md">Medium</Button>
-                        <Button variant="primary" size="lg">Large</Button>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        <Button variant="primary" loading>Loading</Button>
-                        <Button variant="primary" disabled>Disabled</Button>
-                    </div>
-                </div>
+                {(s) => (
+                    <Button
+                        variant={s.variant as "primary" | "secondary" | "ghost" | "outline" | "destructive"}
+                        size={s.size as "sm" | "md" | "lg"}
+                        loading={s.loading as boolean}
+                        disabled={s.disabled as boolean}
+                    >
+                        Button
+                    </Button>
+                )}
             </ComponentBlock>
 
             {/* Badge */}
             <ComponentBlock
                 title="Badge"
                 description="Variants and dot indicator."
+                controls={[
+                    { type: "select",  prop: "variant", label: "Variant", options: ["default", "primary", "secondary", "success", "warning", "destructive", "outline"] },
+                    { type: "boolean", prop: "dot",     label: "Dot" },
+                ]}
                 code={`<Badge variant="default">Default</Badge>
 <Badge variant="primary">Primary</Badge>
 <Badge variant="success">Success</Badge>
@@ -257,22 +259,17 @@ function PrimitivesSection() {
 <Badge variant="warning" dot>Pending</Badge>
 <Badge variant="destructive" dot>Offline</Badge>`}
             >
-                <div className="space-y-3">
-                    <div className="flex flex-wrap gap-2">
-                        <Badge variant="default">Default</Badge>
-                        <Badge variant="primary">Primary</Badge>
-                        <Badge variant="secondary">Secondary</Badge>
-                        <Badge variant="success">Success</Badge>
-                        <Badge variant="warning">Warning</Badge>
-                        <Badge variant="destructive">Destructive</Badge>
-                        <Badge variant="outline">Outline</Badge>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        <Badge variant="success" dot>Active</Badge>
-                        <Badge variant="warning" dot>Pending</Badge>
-                        <Badge variant="destructive" dot>Offline</Badge>
-                    </div>
-                </div>
+                {(s) => {
+                    const v = s.variant as string;
+                    return (
+                        <Badge
+                            variant={s.variant as "default" | "primary" | "secondary" | "success" | "warning" | "destructive" | "outline"}
+                            dot={s.dot as boolean}
+                        >
+                            {v.charAt(0).toUpperCase() + v.slice(1)}
+                        </Badge>
+                    );
+                }}
             </ComponentBlock>
 
             {/* Avatar */}
