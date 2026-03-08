@@ -26,6 +26,7 @@ export function ExportButton({
 
     return (
         <Button
+            type="button"
             variant="outline"
             size="sm"
             onClick={handleClick}

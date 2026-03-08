@@ -9,7 +9,7 @@ import {
     type ColumnDef,
     type SortingState,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowUp, ArrowDown, ArrowUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SkeletonTableRow, EmptyState } from "@/components/ui";
@@ -44,6 +44,14 @@ export function DataTable<T extends object>({
 }: DataTableProps<T>) {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [rowSelection, setRowSelection] = useState<Record<string, boolean>>({});
+
+    const prevDataRef = useRef(data);
+    useEffect(() => {
+        if (prevDataRef.current !== data) {
+            setRowSelection({});
+            prevDataRef.current = data;
+        }
+    }, [data]);
 
     // Prepend checkbox selection column
     const selectionColumn: ColumnDef<T> = {
@@ -86,6 +94,8 @@ export function DataTable<T extends object>({
         onRowSelectionChange: setRowSelection,
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
+        // NOTE: Column filters operate on the current page's data only (client-side).
+        // For full-dataset filtering, integrate server-side via URL search params.
         getFilteredRowModel: getFilteredRowModel(),
         enableRowSelection: true,
     });

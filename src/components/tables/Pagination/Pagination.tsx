@@ -31,7 +31,7 @@ export function Pagination({ total, page, limit, className }: PaginationProps) {
     const searchParams = useSearchParams();
 
     const totalPages = Math.ceil(total / limit);
-    const start = total === 0 ? 0 : (page - 1) * limit + 1;
+    const start = total === 0 ? 0 : Math.min((page - 1) * limit + 1, total);
     const end = Math.min(page * limit, total);
     const pages = getPageNumbers(page, totalPages);
 

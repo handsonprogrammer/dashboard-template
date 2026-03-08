@@ -146,7 +146,8 @@ Key capabilities:
     │   │   └── DonutChart/
     │   └── tables/
     │       ├── DataTable/         TanStack Table v8, sort/filter/select
-    │       └── ExportButton/      papaparse CSV export
+    │       ├── ExportButton/      papaparse CSV export
+    │       └── Pagination/        URL search param pagination
     ├── contexts/
     │   ├── SidebarContext.tsx     isOpen, isCollapsed, toggle(), collapse()
     │   ├── ThemeContext.tsx       (thin wrapper — next-themes does the work)
