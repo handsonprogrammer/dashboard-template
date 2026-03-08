@@ -44,7 +44,7 @@ export function Modal({
         <Dialog open={open} onClose={onClose} className="relative z-50">
             <DialogBackdrop
                 transition
-                className="fixed inset-0 bg-black/50 dark:bg-black/20 backdrop-blur-sm transition-opacity data-[closed]:opacity-0"
+                className="fixed inset-0 bg-black/50 dark:bg-gray-900/60 backdrop-blur-sm transition-opacity data-[closed]:opacity-0"
             />
             <div className="fixed inset-0 flex items-center justify-center p-4">
                 <DialogPanel
