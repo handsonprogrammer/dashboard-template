@@ -81,7 +81,7 @@ function ComponentBlock({
     code?: string;
     controls?: Control[];
     className?: string;
-    children: React.ReactNode | ((state: ControlState) => React.ReactNode);
+    children: React.ReactNode | ((state: ControlState, set: (patch: Record<string, string | boolean>) => void) => React.ReactNode);
 }) {
     const [tab, setTab] = useState<"preview" | "code">("preview");
 
@@ -102,7 +102,7 @@ function ComponentBlock({
 
     const hasCode = Boolean(code);
     const resolvedChildren =
-        typeof children === "function" ? children(state) : children;
+        typeof children === "function" ? children(state, dispatch) : children;
 
     return (
         <div className={`space-y-0 rounded-xl border border-(--color-border) overflow-hidden ${className}`}>
@@ -522,7 +522,11 @@ function OverlaysSection() {
             <ComponentBlock
                 title="ConfirmDialog"
                 description="Destructive action confirmation."
-                code={`<ConfirmDialog
+                code={`const [open, setOpen] = useState(false);
+
+<Button variant="destructive" onClick={() => setOpen(true)}>Delete Record</Button>
+
+<ConfirmDialog
   open={open}
   onClose={() => setOpen(false)}
   onConfirm={handleDelete}
@@ -548,7 +552,11 @@ function OverlaysSection() {
             <ComponentBlock
                 title="Drawer"
                 description="Side panel (right, left, top, bottom)."
-                code={`<Drawer
+                code={`const [open, setOpen] = useState(false);
+
+<Button variant="outline" onClick={() => setOpen(true)}>Open Drawer</Button>
+
+<Drawer
   open={open}
   onClose={() => setOpen(false)}
   title="Notifications"
@@ -914,10 +922,11 @@ function FormsSection() {
 <Toggle size="md" label="Medium" checked />
 <Toggle size="lg" label="Large"  checked />`}
             >
-                {(s) => (
+                {(s, set) => (
                     <Toggle
                         size={s.size as "sm" | "md" | "lg"}
                         checked={s.checked as boolean}
+                        onChange={(val) => set({ checked: val })}
                         label="Enable notifications"
                         description="Receive alerts for important events"
                     />
