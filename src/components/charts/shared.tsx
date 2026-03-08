@@ -33,10 +33,10 @@ export function ChartTooltip({ active, payload, label }: ChartTooltipProps) {
     return (
         <div className="rounded-lg border border-(--color-border) bg-(--color-card) px-3 py-2 shadow-lg text-sm">
             <p className="font-medium mb-1 text-(--color-foreground)">{label}</p>
-            {payload.map((entry) => {
+            {payload.map((entry, index) => {
                 const value = typeof entry.value === "number" ? entry.value : 0;
                 return (
-                    <p key={`${String(entry.dataKey)}-${entry.name ?? ""}`} style={{ color: entry.color }}>
+                    <p key={`${String(entry.dataKey)}-${index}`} style={{ color: entry.color }}>
                         {entry.name}: {value.toLocaleString()}
                     </p>
                 );

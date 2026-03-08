@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import {
     AreaChart as RechartsAreaChart,
     Area,
@@ -29,6 +30,7 @@ export function AreaChart({
     showGrid = true,
     className,
 }: AreaChartProps) {
+    const uid = useId();
     return (
         <div className={cn("w-full", className)}>
             <ResponsiveContainer width="100%" height={height}>
@@ -40,7 +42,7 @@ export function AreaChart({
                         {series.map((s) => (
                             <linearGradient
                                 key={s.key}
-                                id={`gradient-${s.key}`}
+                                id={`gradient-${uid}-${s.key}`}
                                 x1="0"
                                 y1="0"
                                 x2="0"
@@ -88,7 +90,7 @@ export function AreaChart({
                             name={s.label}
                             stroke={s.color}
                             strokeWidth={2}
-                            fill={`url(#gradient-${s.key})`}
+                            fill={`url(#gradient-${uid}-${s.key})`}
                             fillOpacity={1}
                         />
                     ))}
