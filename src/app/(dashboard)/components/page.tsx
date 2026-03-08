@@ -201,7 +201,7 @@ function ComponentBlock({
 
 function PrimitivesSection() {
     return (
-        <div className="space-y-10">
+        <div className="space-y-6">
             {/* Button */}
             <ComponentBlock
                 title="Button"
@@ -375,7 +375,7 @@ const ALERT_MESSAGE: Record<string, string> = {
 
 function FeedbackSection() {
     return (
-        <div className="space-y-10">
+        <div className="space-y-6">
             {/* Alert */}
             <ComponentBlock
                 title="Alert"
@@ -471,7 +471,7 @@ function OverlaysSection() {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
-        <div className="space-y-10">
+        <div className="space-y-6">
             {/* Modal */}
             <ComponentBlock
                 title="Modal"
@@ -639,7 +639,7 @@ function OverlaysSection() {
 
 function NavigationSection() {
     return (
-        <div className="space-y-10">
+        <div className="space-y-6">
             {/* Breadcrumbs */}
             <ComponentBlock
                 title="Breadcrumbs"
@@ -766,7 +766,7 @@ function FormsSection() {
     const [dateRange, setDateRange] = useState<DateRange | undefined>();
 
     return (
-        <div className="space-y-10 max-w-lg">
+        <div className="space-y-6 max-w-lg">
             <ComponentBlock
                 title="Input"
                 description="Text field with label, helper, and error state."
@@ -967,7 +967,7 @@ function LayoutSection() {
     ];
 
     return (
-        <div className="space-y-10">
+        <div className="space-y-6">
             {/* Cards */}
             <ComponentBlock
                 title="Card"
@@ -1124,7 +1124,7 @@ const TOKEN_ROWS: { token: string; purpose: string }[] = [
 
 function ThemingSection() {
     return (
-        <div className="space-y-10 max-w-3xl">
+        <div className="space-y-6 max-w-3xl">
 
             {/* Overview */}
             <ComponentBlock title="How the token system works" description="All visual styles are driven by CSS custom properties defined in src/app/globals.css. Tailwind classes reference them via var(--…), so changing a token instantly updates every component.">
@@ -1314,7 +1314,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 function ChartsSection() {
     return (
-        <div className="space-y-10">
+        <div className="space-y-6">
             <ComponentBlock
                 title="AreaChart"
                 description="Gradient fill area chart with multiple series."
