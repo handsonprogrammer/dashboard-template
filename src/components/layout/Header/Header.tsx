@@ -84,7 +84,7 @@ export function Header() {
             {/* Menu items */}
             <div className="p-1">
               {[
-                { icon: User,     label: "Profile",  href: "/users" },
+                { icon: User, label: "Profile", href: "/users" },
                 { icon: Settings, label: "Settings", href: "#" },
               ].map(({ icon: Icon, label, href }) => (
                 <a
@@ -104,7 +104,7 @@ export function Header() {
             <div className="border-t border-(--color-border) p-1">
               <button
                 type="button"
-                onClick={() => {}}
+                onClick={() => { }}
                 className={cn(
                   "flex w-full items-center gap-2.5 rounded-(--radius-sm) px-3 py-2 text-sm",
                   "text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors"
