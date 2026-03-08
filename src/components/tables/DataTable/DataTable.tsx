@@ -16,6 +16,9 @@ import { SkeletonTableRow, EmptyState } from "@/components/ui";
 import { ExportButton } from "../ExportButton";
 import { Pagination } from "../Pagination";
 
+// TanStack Table v8 default column size — used to detect unconfigured columns
+const TANSTACK_DEFAULT_COLUMN_SIZE = 150;
+
 export interface DataTableProps<T extends object> {
     data: T[];
     columns: ColumnDef<T>[];
@@ -43,39 +46,37 @@ export function DataTable<T extends object>({
     const [rowSelection, setRowSelection] = useState<Record<string, boolean>>({});
 
     // Prepend checkbox selection column
-    const allColumns: ColumnDef<T, unknown>[] = [
-        {
-            id: "select",
-            header: ({ table }) => (
-                <input
-                    type="checkbox"
-                    checked={table.getIsAllPageRowsSelected()}
-                    ref={(el) => {
-                        if (el) {
-                            el.indeterminate = table.getIsSomePageRowsSelected();
-                        }
-                    }}
-                    onChange={table.getToggleAllPageRowsSelectedHandler()}
-                    aria-label="Select all rows"
-                    className="rounded border border-(--color-border) accent-(--color-primary)"
-                />
-            ),
-            cell: ({ row }) => (
-                <input
-                    type="checkbox"
-                    checked={row.getIsSelected()}
-                    disabled={!row.getCanSelect()}
-                    onChange={row.getToggleSelectedHandler()}
-                    aria-label="Select row"
-                    className="rounded border border-(--color-border) accent-(--color-primary)"
-                />
-            ),
-            enableSorting: false,
-            enableColumnFilter: false,
-            size: 40,
-        },
-        ...(columns as ColumnDef<T, unknown>[]),
-    ];
+    const selectionColumn: ColumnDef<T> = {
+        id: "select",
+        header: ({ table }) => (
+            <input
+                type="checkbox"
+                checked={table.getIsAllPageRowsSelected()}
+                ref={(el) => {
+                    if (el) {
+                        el.indeterminate = table.getIsSomePageRowsSelected();
+                    }
+                }}
+                onChange={table.getToggleAllPageRowsSelectedHandler()}
+                aria-label="Select all rows"
+                className="rounded border border-(--color-border) accent-(--color-primary)"
+            />
+        ),
+        cell: ({ row }) => (
+            <input
+                type="checkbox"
+                checked={row.getIsSelected()}
+                disabled={!row.getCanSelect()}
+                onChange={row.getToggleSelectedHandler()}
+                aria-label="Select row"
+                className="rounded border border-(--color-border) accent-(--color-primary)"
+            />
+        ),
+        enableSorting: false,
+        enableColumnFilter: false,
+        size: 40,
+    };
+    const allColumns = [selectionColumn, ...columns];
 
     const table = useReactTable({
         data,
@@ -121,26 +122,23 @@ export function DataTable<T extends object>({
                                 {hg.headers.map((header) => (
                                     <th
                                         key={header.id}
-                                        style={{ width: header.getSize() !== 150 ? header.getSize() : undefined }}
+                                        style={{ width: header.getSize() !== TANSTACK_DEFAULT_COLUMN_SIZE ? header.getSize() : undefined }}
                                         className="px-4 py-3 text-left font-medium text-(--color-muted-foreground)"
                                     >
                                         {header.isPlaceholder ? null : (
                                             <div className="space-y-1.5">
                                                 {/* Sort trigger */}
-                                                <div
-                                                    className={cn(
-                                                        "flex items-center gap-1",
-                                                        header.column.getCanSort() &&
-                                                            "cursor-pointer select-none hover:text-(--color-foreground)",
-                                                    )}
-                                                    onClick={header.column.getToggleSortingHandler()}
-                                                >
-                                                    {flexRender(
-                                                        header.column.columnDef.header,
-                                                        header.getContext(),
-                                                    )}
-                                                    {header.column.getCanSort() && (
-                                                        <span className="shrink-0 text-(--color-muted-foreground)">
+                                                {header.column.getCanSort() ? (
+                                                    <button
+                                                        type="button"
+                                                        onClick={header.column.getToggleSortingHandler()}
+                                                        className="flex items-center gap-1 cursor-pointer select-none hover:text-(--color-foreground) bg-transparent border-0 p-0 w-full text-left font-medium text-(--color-muted-foreground)"
+                                                    >
+                                                        {flexRender(
+                                                            header.column.columnDef.header,
+                                                            header.getContext(),
+                                                        )}
+                                                        <span className="shrink-0">
                                                             {header.column.getIsSorted() === "asc" ? (
                                                                 <ArrowUp size={12} />
                                                             ) : header.column.getIsSorted() === "desc" ? (
@@ -149,8 +147,15 @@ export function DataTable<T extends object>({
                                                                 <ArrowUpDown size={12} />
                                                             )}
                                                         </span>
-                                                    )}
-                                                </div>
+                                                    </button>
+                                                ) : (
+                                                    <div className="flex items-center gap-1">
+                                                        {flexRender(
+                                                            header.column.columnDef.header,
+                                                            header.getContext(),
+                                                        )}
+                                                    </div>
+                                                )}
                                                 {/* Column filter input */}
                                                 {header.column.getCanFilter() && (
                                                     <input
