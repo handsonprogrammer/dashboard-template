@@ -58,50 +58,6 @@ import { LineChart, BarChart, AreaChart, PieChart, DonutChart } from "@/componen
 import { revenueData, signupData, trafficSourceData, orderStatusData } from "@/data/analytics";
 import { TrendingUp } from "lucide-react";
 
-/* ─── Helper: section block ─────────────────────────────────────── */
-
-function Section({
-    title,
-    description,
-    children,
-    code,
-    className = "",
-}: {
-    title: string;
-    description?: string;
-    children: React.ReactNode;
-    code?: string;
-    className?: string;
-}) {
-    const [showCode, setShowCode] = useState(false);
-
-    return (
-        <div className={`space-y-3 ${className}`}>
-            <div className="flex items-start justify-between gap-4">
-                <div>
-                    <h3 className="text-sm font-semibold uppercase tracking-wide text-(--color-muted-foreground)">
-                        {title}
-                    </h3>
-                    {description && (
-                        <p className="text-sm text-(--color-muted-foreground) mt-0.5">{description}</p>
-                    )}
-                </div>
-                {code && (
-                    <button
-                        type="button"
-                        onClick={() => setShowCode((v) => !v)}
-                        className="shrink-0 text-xs font-medium text-(--color-muted-foreground) hover:text-(--color-foreground) transition-colors mt-0.5"
-                    >
-                        {showCode ? "Hide code" : "Show code"}
-                    </button>
-                )}
-            </div>
-            <div>{children}</div>
-            {showCode && code && <CodeBlock code={code} />}
-        </div>
-    );
-}
-
 /* ─── Types ─────────────────────────────────────────────────────── */
 
 type Control =
@@ -243,13 +199,11 @@ function ComponentBlock({
     );
 }
 
-/* ─── Tab sections ──────────────────────────────────────────────── */
-
 function PrimitivesSection() {
     return (
         <div className="space-y-10">
             {/* Button */}
-            <Section
+            <ComponentBlock
                 title="Button"
                 description="All variants, sizes, and states."
                 code={`<Button variant="primary">Primary</Button>
@@ -285,10 +239,10 @@ function PrimitivesSection() {
                         <Button variant="primary" disabled>Disabled</Button>
                     </div>
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Badge */}
-            <Section
+            <ComponentBlock
                 title="Badge"
                 description="Variants and dot indicator."
                 code={`<Badge variant="default">Default</Badge>
@@ -319,10 +273,10 @@ function PrimitivesSection() {
                         <Badge variant="destructive" dot>Offline</Badge>
                     </div>
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Avatar */}
-            <Section
+            <ComponentBlock
                 title="Avatar & AvatarGroup"
                 description="Sizes and group stacking."
                 code={`<Avatar name="Alice Johnson" size="xs" />
@@ -358,10 +312,10 @@ function PrimitivesSection() {
                         max={3}
                     />
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Spinner */}
-            <Section
+            <ComponentBlock
                 title="Spinner"
                 description="Loading indicator in three sizes."
                 code={`<Spinner size="sm" />
@@ -373,10 +327,10 @@ function PrimitivesSection() {
                     <Spinner size="md" />
                     <Spinner size="lg" />
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Progress */}
-            <Section
+            <ComponentBlock
                 title="Progress"
                 description="Linear bars and ring progress."
                 code={`{/* Linear */}
@@ -401,7 +355,7 @@ function PrimitivesSection() {
                     <RingProgress value={72} variant="success" showLabel size={80} />
                     <RingProgress value={91} variant="destructive" showLabel size={80} />
                 </div>
-            </Section>
+            </ComponentBlock>
         </div>
     );
 }
@@ -410,7 +364,7 @@ function FeedbackSection() {
     return (
         <div className="space-y-10">
             {/* Alert */}
-            <Section
+            <ComponentBlock
                 title="Alert"
                 description="Four severity levels."
                 code={`<Alert variant="info"        title="Info">Your changes have been saved.</Alert>
@@ -424,10 +378,10 @@ function FeedbackSection() {
                     <Alert variant="warning" title="Warning">Your subscription expires in 7 days.</Alert>
                     <Alert variant="destructive" title="Error">Failed to delete the selected records.</Alert>
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Skeleton */}
-            <Section
+            <ComponentBlock
                 title="Skeleton"
                 description="Loading placeholders."
                 code={`<SkeletonCard />
@@ -469,10 +423,10 @@ function FeedbackSection() {
                     </div>
                     <Skeleton className="h-4 w-48 rounded" />
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* EmptyState */}
-            <Section
+            <ComponentBlock
                 title="EmptyState"
                 description="Zero-result placeholder."
                 code={`<EmptyState
@@ -488,7 +442,7 @@ function FeedbackSection() {
                         action={<Button variant="primary" size="sm">Clear filters</Button>}
                     />
                 </div>
-            </Section>
+            </ComponentBlock>
         </div>
     );
 }
@@ -501,7 +455,7 @@ function OverlaysSection() {
     return (
         <div className="space-y-10">
             {/* Modal */}
-            <Section
+            <ComponentBlock
                 title="Modal"
                 description="Dialog with title, body and footer."
                 code={`const [open, setOpen] = useState(false);
@@ -544,10 +498,10 @@ function OverlaysSection() {
                         <Input label="Email" type="email" placeholder="you@example.com" />
                     </div>
                 </Modal>
-            </Section>
+            </ComponentBlock>
 
             {/* ConfirmDialog */}
-            <Section
+            <ComponentBlock
                 title="ConfirmDialog"
                 description="Destructive action confirmation."
                 code={`<ConfirmDialog
@@ -570,10 +524,10 @@ function OverlaysSection() {
                     confirmLabel="Delete"
                     variant="destructive"
                 />
-            </Section>
+            </ComponentBlock>
 
             {/* Drawer */}
-            <Section
+            <ComponentBlock
                 title="Drawer"
                 description="Side panel (right, left, top, bottom)."
                 code={`<Drawer
@@ -599,10 +553,10 @@ function OverlaysSection() {
                         <p>• Weekly digest is ready</p>
                     </div>
                 </Drawer>
-            </Section>
+            </ComponentBlock>
 
             {/* Tooltip */}
-            <Section
+            <ComponentBlock
                 title="Tooltip"
                 description="Four placement options."
                 code={`<Tooltip content="Top tooltip"    placement="top">
@@ -635,10 +589,10 @@ function OverlaysSection() {
                         <Button variant="outline" size="sm">Left</Button>
                     </Tooltip>
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Dropdown */}
-            <Section
+            <ComponentBlock
                 title="Dropdown"
                 description="Trigger-based menu."
                 code={`<Dropdown
@@ -660,7 +614,7 @@ function OverlaysSection() {
                         { key: "delete", label: "Delete", icon: Trash2, danger: true, onClick: () => { } },
                     ]}
                 />
-            </Section>
+            </ComponentBlock>
         </div>
     );
 }
@@ -669,7 +623,7 @@ function NavigationSection() {
     return (
         <div className="space-y-10">
             {/* Breadcrumbs */}
-            <Section
+            <ComponentBlock
                 title="Breadcrumbs"
                 description="Path navigation with href links."
                 code={`<Breadcrumbs
@@ -687,10 +641,10 @@ function NavigationSection() {
                         { label: "Alice Johnson" },
                     ]}
                 />
-            </Section>
+            </ComponentBlock>
 
             {/* Tabs */}
-            <Section
+            <ComponentBlock
                 title="Tabs"
                 description="Underline variant and pills variant."
                 code={`{/* Underline */}
@@ -731,10 +685,10 @@ function NavigationSection() {
                         variant="pills"
                     />
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Accordion */}
-            <Section
+            <ComponentBlock
                 title="Accordion"
                 description="Collapsible disclosure panels."
                 code={`<Accordion
@@ -780,7 +734,7 @@ function NavigationSection() {
                         ]}
                     />
                 </div>
-            </Section>
+            </ComponentBlock>
         </div>
     );
 }
@@ -798,7 +752,7 @@ function FormsSection() {
 
     return (
         <div className="space-y-10 max-w-lg">
-            <Section
+            <ComponentBlock
                 title="Input"
                 description="Label, placeholder, error, disabled states."
                 code={`<Input
@@ -840,9 +794,9 @@ function FormsSection() {
                     />
                     <Input label="Disabled" placeholder="Cannot edit" disabled />
                 </div>
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="Textarea"
                 description="Multi-line text input."
                 code={`<Textarea
@@ -862,9 +816,9 @@ function FormsSection() {
                     rows={4}
                     helperText={`${area.length} / 500 characters`}
                 />
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="Select"
                 description="Native select element."
                 code={`<Select
@@ -888,9 +842,9 @@ function FormsSection() {
                         { value: "viewer", label: "Viewer" },
                     ]}
                 />
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="Checkbox"
                 description="Standard and indeterminate states."
                 code={`<Checkbox
@@ -920,9 +874,9 @@ function FormsSection() {
                     />
                     <Checkbox label="Disabled checkbox" disabled />
                 </div>
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="RadioGroup"
                 description="Single-choice selection."
                 code={`<RadioGroup
@@ -948,9 +902,9 @@ function FormsSection() {
                         { value: "enterprise", label: "Enterprise", description: "Custom pricing", disabled: true },
                     ]}
                 />
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="Toggle"
                 description="Switch in three sizes."
                 code={`<Toggle
@@ -980,9 +934,9 @@ function FormsSection() {
                         <Toggle size="lg" label="Large" checked />
                     </div>
                 </div>
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="DatePicker"
                 description="Single date selection with a calendar popover."
                 code={`const [date, setDate] = useState<Date | undefined>();
@@ -994,9 +948,9 @@ function FormsSection() {
 />`}
             >
                 <DatePicker label="Appointment date" value={date} onChange={setDate} />
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="DateRangePicker"
                 description="Select a date range with a calendar popover."
                 code={`const [dateRange, setDateRange] = useState<DateRange | undefined>();
@@ -1004,7 +958,7 @@ function FormsSection() {
 <DateRangePicker value={dateRange} onChange={setDateRange} />`}
             >
                 <DateRangePicker value={dateRange} onChange={setDateRange} />
-            </Section>
+            </ComponentBlock>
         </div>
     );
 }
@@ -1027,7 +981,7 @@ function LayoutSection() {
     return (
         <div className="space-y-10">
             {/* Cards */}
-            <Section
+            <ComponentBlock
                 title="Card"
                 description="Container with optional header, body, and footer."
                 code={`<Card>
@@ -1078,10 +1032,10 @@ function LayoutSection() {
                         icon={TrendingUp}
                     />
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* TextCard + ImageCard */}
-            <Section
+            <ComponentBlock
                 title="TextCard & ImageCard"
                 description="Content display cards."
                 code={`<TextCard
@@ -1116,10 +1070,10 @@ function LayoutSection() {
                         aspectRatio="video"
                     />
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Stepper */}
-            <Section
+            <ComponentBlock
                 title="Stepper"
                 description="Horizontal and vertical orientations."
                 code={`<Stepper
@@ -1139,10 +1093,10 @@ function LayoutSection() {
                     <Stepper steps={stepperSteps} orientation="horizontal" />
                     <Stepper steps={stepperSteps} orientation="vertical" />
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Timeline */}
-            <Section
+            <ComponentBlock
                 title="Timeline"
                 description="Chronological event list."
                 code={`<Timeline
@@ -1157,7 +1111,7 @@ function LayoutSection() {
                 <div className="max-w-sm">
                     <Timeline events={timelineEvents} />
                 </div>
-            </Section>
+            </ComponentBlock>
         </div>
     );
 }
@@ -1185,7 +1139,7 @@ function ThemingSection() {
         <div className="space-y-10 max-w-3xl">
 
             {/* Overview */}
-            <Section title="How the token system works" description="All visual styles are driven by CSS custom properties defined in src/app/globals.css. Tailwind classes reference them via var(--…), so changing a token instantly updates every component.">
+            <ComponentBlock title="How the token system works" description="All visual styles are driven by CSS custom properties defined in src/app/globals.css. Tailwind classes reference them via var(--…), so changing a token instantly updates every component.">
                 <CodeBlock
                     language="css"
                     code={`/* src/app/globals.css */
@@ -1202,10 +1156,10 @@ function ThemingSection() {
   /* … dark overrides … */
 }`}
                 />
-            </Section>
+            </ComponentBlock>
 
             {/* Change brand color */}
-            <Section
+            <ComponentBlock
                 title="Change the brand color"
                 description="Only 3 variables need to change. Every button, link, focus ring, badge, and chart accent updates automatically."
                 code={`/* Swap indigo → green */
@@ -1247,10 +1201,10 @@ function ThemingSection() {
                         </div>
                     ))}
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Font */}
-            <Section
+            <ComponentBlock
                 title="Change the typeface"
                 description="Override the two font variables plus next/font imports in layout.tsx."
                 code={`/* globals.css */
@@ -1270,10 +1224,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
                     <code className="font-mono bg-(--color-muted) px-1 py-0.5 rounded text-xs">--font-mono</code>.
                     Swap them in one place and all components inherit the change.
                 </p>
-            </Section>
+            </ComponentBlock>
 
             {/* Dark mode */}
-            <Section
+            <ComponentBlock
                 title="Dark mode"
                 description="next-themes handles persistence and flash prevention. Tailwind picks it up through the @custom-variant dark directive."
                 code={`/* globals.css — every dark token is in the .dark block */
@@ -1296,10 +1250,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
                     <code className="font-mono bg-(--color-muted) px-1 py-0.5 rounded text-xs">localStorage</code>{" "}
                     and respected on the next load with zero flash.
                 </p>
-            </Section>
+            </ComponentBlock>
 
             {/* Radius */}
-            <Section
+            <ComponentBlock
                 title="Border radius"
                 description="A single --radius variable cascades to sm / md / lg / xl / full scales."
                 code={`/* globals.css */
@@ -1331,10 +1285,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
                         </div>
                     ))}
                 </div>
-            </Section>
+            </ComponentBlock>
 
             {/* Token table */}
-            <Section title="Full color token reference">
+            <ComponentBlock title="Full color token reference">
                 <div className="overflow-x-auto rounded-lg border border-(--color-border)">
                     <table className="w-full text-sm">
                         <thead>
@@ -1365,7 +1319,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
                         </tbody>
                     </table>
                 </div>
-            </Section>
+            </ComponentBlock>
         </div>
     );
 }
@@ -1373,7 +1327,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 function ChartsSection() {
     return (
         <div className="space-y-10">
-            <Section
+            <ComponentBlock
                 title="AreaChart"
                 description="Gradient fill area chart with multiple series."
                 code={`<AreaChart
@@ -1402,9 +1356,9 @@ function ChartsSection() {
                         />
                     </CardBody>
                 </Card>
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="LineChart"
                 description="Multi-series line chart with smooth curves."
                 code={`<LineChart
@@ -1433,9 +1387,9 @@ function ChartsSection() {
                         />
                     </CardBody>
                 </Card>
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="BarChart"
                 description="Grouped and stacked bar charts."
                 code={`{/* Grouped (default) */}
@@ -1487,9 +1441,9 @@ function ChartsSection() {
                         </CardBody>
                     </Card>
                 </div>
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="PieChart & DonutChart"
                 code={`<PieChart data={orderStatusData} height={260} />
 
@@ -1513,9 +1467,9 @@ function ChartsSection() {
                         </CardBody>
                     </Card>
                 </div>
-            </Section>
+            </ComponentBlock>
 
-            <Section
+            <ComponentBlock
                 title="NotificationBell & ThemeToggle"
                 description="Available via Header — see layout components."
                 code={`{/* NotificationBell — uses NotificationContext internally */}\n<NotificationBell />\n\n{/* ThemeToggle — cycles light / dark / system */}\n<ThemeToggle />`}
@@ -1523,7 +1477,7 @@ function ChartsSection() {
                 <p className="text-sm text-(--color-muted-foreground)">
                     These components are embedded in the Header. Toggle theme using the sun/moon icon in the top-right corner.
                 </p>
-            </Section>
+            </ComponentBlock>
         </div>
     );
 }
