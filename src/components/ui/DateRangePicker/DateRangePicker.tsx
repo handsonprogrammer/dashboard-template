@@ -70,13 +70,14 @@ export function DateRangePicker({
                     onSelect={onChange}
                     numberOfMonths={2}
                     classNames={{
-                        root: "p-3",
-                        months: "flex gap-4",
-                        month_caption: "flex items-center justify-between px-1 py-2 font-medium text-sm text-(--color-foreground)",
-                        nav: "flex items-center gap-1",
+                        root: "relative p-3",
+                        nav: "absolute top-3 right-3 flex items-center gap-1 z-10",
+                        months: "flex gap-4 mt-8",
+                        month_caption: "py-1 font-medium text-sm text-center text-(--color-foreground)",
+                        caption_label: "text-sm font-semibold",
                         button_previous: "rounded-(--radius-sm) p-1 hover:bg-(--color-muted) transition-colors",
                         button_next: "rounded-(--radius-sm) p-1 hover:bg-(--color-muted) transition-colors",
-                        month_grid: "w-full border-collapse",
+                        month_grid: "w-full border-collapse mt-2",
                         weekdays: "text-center",
                         weekday: "text-xs text-(--color-muted-foreground) pb-2 w-8",
                         week: "",

@@ -353,18 +353,18 @@ Track progress here. Mark items `[x]` when complete.
 - [x] URL search param Pagination component
 
 ### Phase 6 — Pages
-- [ ] `src/app/(dashboard)/admin/page.tsx`
-- [ ] `src/app/(dashboard)/analytics/page.tsx`
-- [ ] `src/app/(dashboard)/users/page.tsx` (server-paginated)
-- [ ] `src/app/(dashboard)/users/[id]/page.tsx`
-- [ ] `src/app/(dashboard)/orders/page.tsx` (server-paginated)
-- [ ] `src/app/(dashboard)/orders/[id]/page.tsx`
-- [ ] `src/app/(auth)/login/page.tsx`
-- [ ] `src/app/(auth)/register/page.tsx`
-- [ ] `src/app/(dashboard)/components/page.tsx`
-- [ ] `src/app/not-found.tsx`
-- [ ] `src/app/(dashboard)/error.tsx`
-- [ ] `src/app/(dashboard)/loading.tsx`
+- [x] `src/app/(dashboard)/admin/page.tsx`
+- [x] `src/app/(dashboard)/analytics/page.tsx`
+- [x] `src/app/(dashboard)/users/page.tsx` (server-paginated)
+- [x] `src/app/(dashboard)/users/[id]/page.tsx`
+- [x] `src/app/(dashboard)/orders/page.tsx` (server-paginated)
+- [x] `src/app/(dashboard)/orders/[id]/page.tsx`
+- [x] `src/app/(auth)/login/page.tsx`
+- [x] `src/app/(auth)/register/page.tsx`
+- [x] `src/app/(dashboard)/components/page.tsx`
+- [x] `src/app/not-found.tsx`
+- [x] `src/app/(dashboard)/error.tsx`
+- [x] `src/app/(dashboard)/loading.tsx`
 
 ### Phase 7 — Storybook
 - [ ] Stories for every `src/components/ui/` component

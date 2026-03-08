@@ -4,7 +4,7 @@ import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { ChevronLeft, ChevronRight, LayoutDashboard, X } from "lucide-react";
 import { useSidebar } from "@/contexts/SidebarContext";
 import { cn } from "@/lib/utils";
-import { navItems } from "./navConfig";
+import { navItems, authItems } from "./navConfig";
 import { NavItem } from "./NavItem";
 
 function NavList({
@@ -25,6 +25,32 @@ function NavList({
         />
       ))}
     </nav>
+  );
+}
+
+function AuthLinks({
+  collapsed,
+  onNavClick,
+}: {
+  collapsed: boolean;
+  onNavClick?: () => void;
+}) {
+  return (
+    <div className="border-t border-(--color-border) px-2 py-3 space-y-1">
+      {!collapsed && (
+        <p className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-widest text-(--color-muted-foreground)">
+          Auth Pages
+        </p>
+      )}
+      {authItems.map((item) => (
+        <NavItem
+          key={item.href}
+          item={item}
+          collapsed={collapsed}
+          onClick={onNavClick}
+        />
+      ))}
+    </div>
   );
 }
 
@@ -57,6 +83,9 @@ export function Sidebar() {
         </div>
 
         <NavList collapsed={isCollapsed} />
+
+        {/* Auth page links */}
+        <AuthLinks collapsed={isCollapsed} />
 
         {/* Collapse toggle */}
         <div className="border-t border-(--color-border) p-2 shrink-0">
@@ -96,6 +125,9 @@ export function Sidebar() {
             </div>
 
             <NavList collapsed={false} onNavClick={close} />
+
+            {/* Auth page links */}
+            <AuthLinks collapsed={false} onNavClick={close} />
           </DialogPanel>
         </div>
       </Dialog>

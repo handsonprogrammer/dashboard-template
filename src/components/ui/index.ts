@@ -7,7 +7,7 @@
 
 // Primitives
 export { Button, type ButtonProps } from "./Button/Button";
-export { Badge, type BadgeProps } from "./Badge/Badge";
+export { Badge, type BadgeProps, type BadgeVariant } from "./Badge/Badge";
 export { Avatar, AvatarGroup, type AvatarProps, type AvatarGroupProps } from "./Avatar/Avatar";
 export { Spinner, type SpinnerProps } from "./Spinner/Spinner";
 export { Progress, RingProgress, type ProgressProps, type RingProgressProps } from "./Progress/Progress";
@@ -45,6 +45,7 @@ export { Select, type SelectProps, type SelectOption } from "./Select/Select";
 export { Checkbox, type CheckboxProps } from "./Checkbox/Checkbox";
 export { RadioGroup, type RadioGroupProps, type RadioOption } from "./RadioGroup/RadioGroup";
 export { Toggle, type ToggleProps } from "./Toggle/Toggle";
+export { DatePicker, type DatePickerProps } from "./DatePicker/DatePicker";
 export { DateRangePicker, type DateRangePickerProps, type DateRange } from "./DateRangePicker/DateRangePicker";
 
 // Layout blocks
@@ -66,3 +67,6 @@ export { ImageCard, type ImageCardProps } from "./ImageCard/ImageCard";
 export { Stepper, type StepperProps, type StepperStep, type StepStatus } from "./Stepper/Stepper";
 export { Timeline, type TimelineProps, type TimelineEvent } from "./Timeline/Timeline";
 // export { Timeline, TimelineItem, type TimelineProps } from "./Timeline/Timeline";
+
+// Utility display
+export { CodeBlock, type CodeBlockProps } from "./CodeBlock/CodeBlock";
