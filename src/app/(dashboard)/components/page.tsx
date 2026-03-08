@@ -260,7 +260,7 @@ function PrimitivesSection() {
 <Badge variant="destructive" dot>Offline</Badge>`}
             >
                 {(s) => {
-                    const v = s.variant as string;
+                    const v = String(s.variant);
                     return (
                         <Badge
                             variant={s.variant as "default" | "primary" | "secondary" | "success" | "warning" | "destructive" | "outline"}
