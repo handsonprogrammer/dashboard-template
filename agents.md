@@ -346,10 +346,10 @@ Track progress here. Mark items `[x]` when complete.
 - [x] DonutChart
 
 ### Phase 5 — Data Table + Pagination + Export
-- [ ] `src/components/tables/DataTable/` (sort, filter, select, skeleton, empty)
-- [ ] `src/components/tables/ExportButton/`
-- [ ] `src/data/` — mock JSON + `fetchPagedData(page, limit)` async helpers
-- [ ] URL search param Pagination component
+- [x] `src/components/tables/DataTable/` (sort, filter, select, skeleton, empty)
+- [x] `src/components/tables/ExportButton/`
+- [x] `src/data/` — mock JSON + `fetchPagedData(page, limit)` async helpers
+- [x] URL search param Pagination component
 
 ### Phase 6 — Pages
 - [ ] `src/app/(dashboard)/admin/page.tsx`
