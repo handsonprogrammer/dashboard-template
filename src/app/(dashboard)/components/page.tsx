@@ -315,15 +315,14 @@ function PrimitivesSection() {
             <ComponentBlock
                 title="Spinner"
                 description="Loading indicator in three sizes."
+                controls={[
+                    { type: "select", prop: "size", label: "Size", options: ["sm", "md", "lg"] },
+                ]}
                 code={`<Spinner size="sm" />
 <Spinner size="md" />
 <Spinner size="lg" />`}
             >
-                <div className="flex items-center gap-4">
-                    <Spinner size="sm" />
-                    <Spinner size="md" />
-                    <Spinner size="lg" />
-                </div>
+                {(s) => <Spinner size={s.size as "sm" | "md" | "lg"} />}
             </ComponentBlock>
 
             {/* Progress */}
@@ -364,17 +363,34 @@ function FeedbackSection() {
             <ComponentBlock
                 title="Alert"
                 description="Four severity levels."
+                controls={[
+                    { type: "select", prop: "variant", label: "Variant", options: ["info", "success", "warning", "destructive"] },
+                ]}
                 code={`<Alert variant="info"        title="Info">Your changes have been saved.</Alert>
 <Alert variant="success"     title="Success">Import completed without errors.</Alert>
 <Alert variant="warning"     title="Warning">Subscription expires in 7 days.</Alert>
 <Alert variant="destructive" title="Error">Failed to delete the selected records.</Alert>`}
             >
-                <div className="space-y-3 max-w-xl">
-                    <Alert variant="info" title="Info">Your changes have been saved successfully.</Alert>
-                    <Alert variant="success" title="Success">The import completed without errors.</Alert>
-                    <Alert variant="warning" title="Warning">Your subscription expires in 7 days.</Alert>
-                    <Alert variant="destructive" title="Error">Failed to delete the selected records.</Alert>
-                </div>
+                {(s) => {
+                    const variant = s.variant as "info" | "success" | "warning" | "destructive";
+                    const titleMap: Record<string, string> = {
+                        info: "Info",
+                        success: "Success",
+                        warning: "Warning",
+                        destructive: "Error",
+                    };
+                    const messageMap: Record<string, string> = {
+                        info: "Your changes have been saved successfully.",
+                        success: "The import completed without errors.",
+                        warning: "Your subscription expires in 7 days.",
+                        destructive: "Failed to delete the selected records.",
+                    };
+                    return (
+                        <Alert variant={variant} title={titleMap[variant]} className="max-w-xl">
+                            {messageMap[variant]}
+                        </Alert>
+                    );
+                }}
             </ComponentBlock>
 
             {/* Skeleton */}
