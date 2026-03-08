@@ -31,7 +31,7 @@ export function Pagination({ total, page, limit, className }: PaginationProps) {
     const searchParams = useSearchParams();
 
     const totalPages = Math.ceil(total / limit);
-    const start = (page - 1) * limit + 1;
+    const start = total === 0 ? 0 : (page - 1) * limit + 1;
     const end = Math.min(page * limit, total);
     const pages = getPageNumbers(page, totalPages);
 
@@ -39,7 +39,7 @@ export function Pagination({ total, page, limit, className }: PaginationProps) {
         const params = new URLSearchParams(searchParams.toString());
         params.set("page", String(newPage));
         params.set("limit", String(newLimit));
-        router.push(`?${params.toString()}`);
+        router.replace(`?${params.toString()}`);
     }
 
     return (
@@ -66,6 +66,7 @@ export function Pagination({ total, page, limit, className }: PaginationProps) {
             {/* Right: page buttons */}
             <div className="flex items-center gap-1">
                 <button
+                    type="button"
                     onClick={() => navigate(page - 1, limit)}
                     disabled={page <= 1}
                     aria-label="Previous page"
@@ -84,6 +85,7 @@ export function Pagination({ total, page, limit, className }: PaginationProps) {
                         </span>
                     ) : (
                         <button
+                            type="button"
                             key={p}
                             onClick={() => navigate(p as number, limit)}
                             aria-current={p === page ? "page" : undefined}
@@ -100,6 +102,7 @@ export function Pagination({ total, page, limit, className }: PaginationProps) {
                 )}
 
                 <button
+                    type="button"
                     onClick={() => navigate(page + 1, limit)}
                     disabled={page >= totalPages}
                     aria-label="Next page"
