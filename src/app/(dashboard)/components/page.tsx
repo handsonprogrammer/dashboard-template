@@ -276,6 +276,9 @@ function PrimitivesSection() {
             <ComponentBlock
                 title="Avatar & AvatarGroup"
                 description="Sizes and group stacking."
+                controls={[
+                    { type: "select", prop: "size", label: "Size", options: ["xs", "sm", "md", "lg", "xl"] },
+                ]}
                 code={`<Avatar name="Alice Johnson" size="xs" />
 <Avatar name="Bob Martinez" size="sm" />
 <Avatar name="Carol White"  size="md" />
@@ -291,24 +294,20 @@ function PrimitivesSection() {
   max={3}
 />`}
             >
-                <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                        <Avatar name="Alice Johnson" size="xs" />
-                        <Avatar name="Bob Martinez" size="sm" />
-                        <Avatar name="Carol White" size="md" />
-                        <Avatar name="David Kim" size="lg" />
-                        <Avatar name="Eva Thompson" size="xl" />
+                {(s) => (
+                    <div className="space-y-4">
+                        <Avatar name="Alice Johnson" size={s.size as "xs" | "sm" | "md" | "lg" | "xl"} />
+                        <AvatarGroup
+                            avatars={[
+                                { name: "Alice Johnson" },
+                                { name: "Bob Martinez" },
+                                { name: "Carol White" },
+                                { name: "David Kim" },
+                            ]}
+                            max={3}
+                        />
                     </div>
-                    <AvatarGroup
-                        avatars={[
-                            { name: "Alice Johnson" },
-                            { name: "Bob Martinez" },
-                            { name: "Carol White" },
-                            { name: "David Kim" },
-                        ]}
-                        max={3}
-                    />
-                </div>
+                )}
             </ComponentBlock>
 
             {/* Spinner */}
@@ -763,7 +762,6 @@ function FormsSection() {
     const [selectVal, setSelectVal] = useState("editor");
     const [checked, setChecked] = useState(false);
     const [radio, setRadio] = useState("monthly");
-    const [toggle, setToggle] = useState(true);
     const [date, setDate] = useState<Date | undefined>();
     const [dateRange, setDateRange] = useState<DateRange | undefined>();
 
@@ -899,6 +897,10 @@ function FormsSection() {
             <ComponentBlock
                 title="Toggle"
                 description="Switch in three sizes."
+                controls={[
+                    { type: "select",  prop: "size",    label: "Size",    options: ["sm", "md", "lg"] },
+                    { type: "boolean", prop: "checked", label: "Checked" },
+                ]}
                 code={`<Toggle
   checked={enabled}
   onChange={setEnabled}
@@ -912,20 +914,14 @@ function FormsSection() {
 <Toggle size="md" label="Medium" checked />
 <Toggle size="lg" label="Large"  checked />`}
             >
-                <div className="space-y-3">
+                {(s) => (
                     <Toggle
-                        checked={toggle}
-                        onChange={setToggle}
+                        size={s.size as "sm" | "md" | "lg"}
+                        checked={s.checked as boolean}
                         label="Enable notifications"
                         description="Receive alerts for important events"
-                        size="md"
                     />
-                    <div className="flex items-center gap-4">
-                        <Toggle size="sm" label="Small" />
-                        <Toggle size="md" label="Medium" checked />
-                        <Toggle size="lg" label="Large" checked />
-                    </div>
-                </div>
+                )}
             </ComponentBlock>
 
             <ComponentBlock
